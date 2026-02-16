@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lab 03 - CSS Structure and Properties</title>
+  <title>Lab 3: CSS Structure and Properties</title>
 
+  <!-- MUST MATCH THE CSS FILENAME EXACTLY -->
   <link rel="stylesheet" href="lab3.css" />
 </head>
 
 <body>
-  <h1 style="text-align:center; margin-top:20px;">Lab 03: CSS Structure and Properties</h1>
-
+  <h1>Lab 3: CSS Structure and Properties</h1>
   <hr>
 
-  <h2>Assessment 1: .image-preview + descendant selector</h2>
+  <h2>Part 1: Image Preview</h2>
 
   <div class="image-preview">
     <img src="https://cpit405.gitlab.io/images/KAU_logo.png" alt="KAU Logo">
@@ -21,7 +21,7 @@
 
   <hr>
 
-  <h2>Assessment 2: CSS Priority Table</h2>
+  <h2>Part 2: CSS Selectors Priority</h2>
 
   <div id="header">
     <span class="myclass1">Every</span>
@@ -34,7 +34,6 @@
     <span class="myclass4">No machine can do the work of one extraordinary man.</span>
   </p>
 
-  <!-- Embedded CSS (as required) -->
   <style>
     p > span { color: red; }
     #header span { color: pink; }
@@ -43,12 +42,14 @@
     #header span:first-child:hover { color: blue; }
   </style>
 
+  <h3>Result Table</h3>
+
   <table class="answers">
     <thead>
       <tr>
-        <th>Selector</th>
-        <th>color</th>
-        <th>color when mouse over</th>
+        <th>Element</th>
+        <th>Color</th>
+        <th>Color when mouse over</th>
       </tr>
     </thead>
     <tbody>
@@ -74,9 +75,5 @@
       </tr>
     </tbody>
   </table>
-
-  <p class="note">Hover on <strong>Every</strong> to see it turn blue.</p>
 </body>
 </html>
-
-
