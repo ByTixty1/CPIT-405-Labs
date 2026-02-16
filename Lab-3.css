@@ -1,79 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lab 3: CSS Structure and Properties</title>
+* { box-sizing: border-box; }
 
-  <!-- MUST MATCH THE CSS FILENAME EXACTLY -->
-  <link rel="stylesheet" href="lab3.css" />
-</head>
+body{
+  font-family: "Times New Roman", Times, serif;
+  margin: 18px;
+  background: #fff;
+  color: #000;
+}
 
-<body>
-  <h1>Lab 3: CSS Structure and Properties</h1>
-  <hr>
+hr{
+  border: none;
+  border-top: 2px solid #a9a9a9;
+  margin: 14px 0 18px;
+}
 
-  <h2>Part 1: Image Preview</h2>
+/* ===== Part 1 (match the frame look) ===== */
+.image-preview{
+  width: 460px;
+  height: 260px;
+  margin: 18px auto 26px;
+  background: #fff;
 
-  <div class="image-preview">
-    <img src="https://cpit405.gitlab.io/images/KAU_logo.png" alt="KAU Logo">
-  </div>
+  border-style: solid;
+  border-width: 22px;
+  border-top-color: #8fd3ea;
+  border-right-color: #f3a4b8;
+  border-bottom-color: #8df19a;
+  border-left-color: #f2e1bf;
 
-  <hr>
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  <h2>Part 2: CSS Selectors Priority</h2>
+  /* beveled corners */
+  clip-path: polygon(
+    22px 0,
+    calc(100% - 22px) 0,
+    100% 22px,
+    100% calc(100% - 22px),
+    calc(100% - 22px) 100%,
+    22px 100%,
+    0 calc(100% - 22px),
+    0 22px
+  );
+}
 
-  <div id="header">
-    <span class="myclass1">Every</span>
-    <span class="myclass2">one can</span>
-    <span class="myclass3">success.</span>
-  </div>
+.image-preview img{
+  width: 120px;        
+  height: auto;
+  display: block;
+}
 
-  <p>
-    One machine can do the work of fifty ordinary men.
-    <span class="myclass4">No machine can do the work of one extraordinary man.</span>
-  </p>
+/* ===== Part 2 table style ===== */
+.answers{
+  border-collapse: collapse;
+  width: 340px;
+}
 
-  <style>
-    p > span { color: red; }
-    #header span { color: pink; }
-    span { color: green; }
-    #header *:last-child { color: orange; }
-    #header span:first-child:hover { color: blue; }
-  </style>
+.answers th, .answers td{
+  border: 1px solid #000;
+  padding: 8px 10px;
+  text-align: left;
+}
 
-  <h3>Result Table</h3>
+.answers th{
+  background: #eaeaea;
+  font-weight: bold;
+}
 
-  <table class="answers">
-    <thead>
-      <tr>
-        <th>Element</th>
-        <th>Color</th>
-        <th>Color when mouse over</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>span.myclass1</td>
-        <td>pink</td>
-        <td>blue</td>
-      </tr>
-      <tr>
-        <td>span.myclass2</td>
-        <td>pink</td>
-        <td>pink</td>
-      </tr>
-      <tr>
-        <td>span.myclass3</td>
-        <td>orange</td>
-        <td>orange</td>
-      </tr>
-      <tr>
-        <td>span.myclass4</td>
-        <td>red</td>
-        <td>red</td>
-      </tr>
-    </tbody>
-  </table>
-</body>
-</html>
+/* Responsive */
+@media (max-width: 520px){
+  .image-preview{
+    width: 100%;
+    height: 220px;
+  }
+  .answers{
+    width: 100%;
+  }
+}
