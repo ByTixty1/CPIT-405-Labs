@@ -1,0 +1,68 @@
+Lab-4.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+  width: 420px;
+  max-width: calc(100% - 32px);
+  margin: 28px auto;
+}
+
+h1 {
+  margin: 0 0 18px;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.order-form label {
+  display: block;
+  margin: 10px 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.order-form input,
+.order-form textarea {
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+  padding: 10px 12px;
+  font-size: 13px;
+  background: #fff;
+  outline: none;
+}
+
+.order-form input:focus,
+.order-form textarea:focus {
+  border-color: #b5b5b5;
+}
+
+.order-form textarea {
+  height: 220px;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 0;
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  opacity: 0.92;
+}
