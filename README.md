@@ -16,6 +16,7 @@ Web development labs for the **CPIT-405** course at King Abdulaziz University.
 | [Lab 3](Lab-3/) | CSS Structure & Selector Priority | HTML, CSS |
 | [Lab 4](Lab-4/) | HTML Forms — Auto Parts Order Form | HTML, CSS |
 | [Lab 5](Lab-5/) | JavaScript — NBA Player Stats Dashboard | HTML, CSS, JS |
+| [Lab 6](Lab-6/) | JavaScript — Like/Dislike with Cookies | HTML, CSS, JS |
 
 ---
 
@@ -42,6 +43,13 @@ An interactive dashboard that displays NBA player statistics with:
 - 🔄 Sortable table columns
 - 🌙 Dark mode toggle
 - Dynamic data rendering via JavaScript
+
+### Lab 6 — JavaScript (Like/Dislike with Cookies)
+A like/dislike page with cookie-based state management:
+- 👍👎 Like and dislike buttons with counters
+- 💬 Comment system (one comment per session)
+- 🍪 Cookies to prevent duplicate voting/commenting
+- 🔄 Reset button to clear all state and vote again
 
 ---
 
