@@ -188,6 +188,7 @@
         function Navbar() {
             return (
                 <nav className="navbar">
+                    <a href="../Lab-8/Lab-8.html" style={{marginRight:"8px",background:"rgba(255,255,255,0.15)",borderRadius:"4px",padding:"6px 12px",fontSize:"0.85rem"}}>← Lab 8</a>
                     <Link to="/">Home</Link>
                     <Link to="/about">About</Link>
                 </nav>
@@ -198,7 +199,6 @@
             const [query, setQuery] = React.useState("");
             const [recipes, setRecipes] = React.useState([]);
             const [status, setStatus] = React.useState("");
-            const history = useHistory();
 
             // useEffect — fetch default recipes when component mounts
             React.useEffect(() => {
@@ -245,7 +245,7 @@
                                 <div key={recipe.id} className="recipe-card">
                                     <img src={recipe.image} alt={recipe.title} />
                                     <div className="card-title">
-                                        <a onClick={() => history.push(`/recipe/${recipe.id}`)}>
+                                        <a href={`#/recipe/${recipe.id}`}>
                                             {recipe.title}
                                         </a>
                                     </div>

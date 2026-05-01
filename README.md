@@ -17,6 +17,9 @@ Web development labs for the **CPIT-405** course at King Abdulaziz University.
 | [Lab 4](Lab-4/) | HTML Forms — Auto Parts Order Form | HTML, CSS |
 | [Lab 5](Lab-5/) | JavaScript — NBA Player Stats Dashboard | HTML, CSS, JS |
 | [Lab 6](Lab-6/) | JavaScript — Like/Dislike with Cookies | HTML, CSS, JS |
+| [Lab 7](Lab-7/) | Async JavaScript — Unsplash Image Search | HTML, CSS, JS, API |
+| [Lab 8](Lab-8/) | React — Link Shrinker (URL Shortener) | React, React Router |
+| [Lab 9](Lab-9/) | React — Recipe Search (Spoonacular API) | React, React Router, API |
 
 ---
 
@@ -51,8 +54,34 @@ A like/dislike page with cookie-based state management:
 - 🍪 Cookies to prevent duplicate voting/commenting
 - 🔄 Reset button to clear all state and vote again
 
+### Lab 7 — Async JavaScript (Unsplash Image Search)
+Demonstrates three approaches to async HTTP requests:
+- **XHR** (XMLHttpRequest) with event listeners
+- **Fetch + Promise** chaining
+- **Fetch + Async/Await**
+
+Requires a free [Unsplash API key](https://unsplash.com/developers) — replace `YOUR_UNSPLASH_ACCESS_KEY` in `Lab-7/script.js`.
+
+### Lab 8 — React (Link Shrinker)
+A URL shortener built with React featuring:
+- `useState` for state management
+- Event handling (shorten button, input change)
+- React Router with Home and About pages
+- Custom or auto-generated short codes
+
+### Lab 9 — React (Recipe Search)
+A recipe search app built with React featuring:
+- `useEffect` to load default recipes on mount
+- `useState` + user-triggered `fetch` for search
+- Recipe detail pages with ingredients and instructions
+- React Router for navigation
+
+Requires a free [Spoonacular API key](https://spoonacular.com/food-api) — replace `YOUR_SPOONACULAR_API_KEY` in `Lab-9/Lab-9.html`.
+
 ---
 
 ## How to Run
 
-Open any `.html` file in a web browser — no server or build tools required.
+Open any `Lab-X.html` file directly in a browser — no build step needed (Labs 7–9 use CDN-loaded React).
+
+**GitHub Pages:** [https://bytixty1.github.io/CPIT-405-Labs/](https://bytixty1.github.io/CPIT-405-Labs/)

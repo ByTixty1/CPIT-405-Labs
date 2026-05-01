@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { API_KEY, BASE_URL } from "../config";
 
 function Home() {
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [status, setStatus] = useState("");
-  const history = useHistory();
 
   // Fetch default recipes when the component mounts
   useEffect(() => {
@@ -63,9 +62,7 @@ function Home() {
             <div key={recipe.id} className="recipe-card">
               <img src={recipe.image} alt={recipe.title} />
               <div className="card-title">
-                <a onClick={() => history.push(`/recipe/${recipe.id}`)}>
-                  {recipe.title}
-                </a>
+                <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
               </div>
             </div>
           ))}

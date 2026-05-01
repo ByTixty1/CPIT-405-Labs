@@ -38,8 +38,9 @@ function searchXHR(query) {
     xhr.open("GET", url);
     xhr.addEventListener("load", () => {
         const data = JSON.parse(xhr.responseText);
-        renderImages(data.results);
-        statusMsg.textContent = `XHR — found ${data.results.length} results`;
+        const results = data.results || [];
+        renderImages(results);
+        statusMsg.textContent = `XHR — found ${results.length} results`;
     });
     xhr.addEventListener("error", () => {
         statusMsg.textContent = "XHR request failed.";
@@ -54,8 +55,9 @@ function searchPromise(query) {
     fetch(url)
         .then((res) => res.json())
         .then((data) => {
-            renderImages(data.results);
-            statusMsg.textContent = `Promise — found ${data.results.length} results`;
+            const results = data.results || [];
+            renderImages(results);
+            statusMsg.textContent = `Promise — found ${results.length} results`;
         })
         .catch(() => {
             statusMsg.textContent = "Fetch (Promise) request failed.";
@@ -69,8 +71,9 @@ async function searchAsync(query) {
     try {
         const res = await fetch(url);
         const data = await res.json();
-        renderImages(data.results);
-        statusMsg.textContent = `Async/Await — found ${data.results.length} results`;
+        const results = data.results || [];
+        renderImages(results);
+        statusMsg.textContent = `Async/Await — found ${results.length} results`;
     } catch {
         statusMsg.textContent = "Fetch (Async/Await) request failed.";
     }

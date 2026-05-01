@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CPIT-405 Labs — Ali Saleh Alghamdi</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            min-height: 100vh;
+            padding: 40px 24px;
+            color: #222;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 { font-size: 1.8rem; margin-bottom: 6px; }
+        .header p { color: #555; font-size: 1rem; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 22px 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: box-shadow 0.15s;
+        }
+        .card:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.18); }
+        .lab-num {
+            font-size: 0.78rem;
+            font-weight: bold;
+            color: #1a73e8;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 6px;
+        }
+        .card h2 { font-size: 1.05rem; margin-bottom: 6px; }
+        .card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+        .tags { margin-top: 10px; }
+        .tag {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1558b0;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.74rem;
+            margin-right: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CPIT-405 Labs</h1>
+        <p>Ali Saleh Alghamdi — King Abdulaziz University</p>
+    </div>
+
+    <div class="grid">
+        <a class="card" href="Lab-1/index.html">
+            <div class="lab-num">Lab 1</div>
+            <h2>Introduction &amp; Landing Page</h2>
+            <p>A simple landing page displaying the student name.</p>
+            <div class="tags"><span class="tag">HTML</span></div>
+        </a>
+
+        <a class="card" href="Lab-2/Lab-2.html">
+            <div class="lab-num">Lab 2</div>
+            <h2>HTML Basics</h2>
+            <p>Text formatting, links, images, and core HTML tags.</p>
+            <div class="tags"><span class="tag">HTML</span></div>
+        </a>
+
+        <a class="card" href="Lab-2.1/Lab-2.1.html">
+            <div class="lab-num">Lab 2.1</div>
+            <h2>HTML Continued</h2>
+            <p>Headings, structure, and page navigation.</p>
+            <div class="tags"><span class="tag">HTML</span></div>
+        </a>
+
+        <a class="card" href="Lab-3/Lab-3.html">
+            <div class="lab-num">Lab 3</div>
+            <h2>CSS Structure &amp; Selectors</h2>
+            <p>Selector priority and CSS fundamentals.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+        </a>
+
+        <a class="card" href="Lab-4/Lab-4.html">
+            <div class="lab-num">Lab 4</div>
+            <h2>HTML Forms</h2>
+            <p>Auto parts order form with styled inputs.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+        </a>
+
+        <a class="card" href="Lab-5/Lab-5.html">
+            <div class="lab-num">Lab 5</div>
+            <h2>JavaScript — NBA Stats</h2>
+            <p>NBA player stats dashboard with dynamic DOM manipulation.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
+        </a>
+
+        <a class="card" href="Lab-6/Lab-6.html">
+            <div class="lab-num">Lab 6</div>
+            <h2>JavaScript — Like/Dislike</h2>
+            <p>Like/Dislike buttons with cookie-based persistence.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
+        </a>
+
+        <a class="card" href="Lab-7/Lab-7.html">
+            <div class="lab-num">Lab 7</div>
+            <h2>Async JavaScript</h2>
+            <p>Unsplash image search via XHR, Fetch + Promise, and Async/Await.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">API</span></div>
+        </a>
+
+        <a class="card" href="Lab-8/Lab-8.html">
+            <div class="lab-num">Lab 8</div>
+            <h2>React — Link Shrinker</h2>
+            <p>URL shortener using useState, event handling, and React Router.</p>
+            <div class="tags"><span class="tag">React</span><span class="tag">React Router</span></div>
+        </a>
+
+        <a class="card" href="Lab-9/Lab-9.html">
+            <div class="lab-num">Lab 9</div>
+            <h2>React — Recipe Search</h2>
+            <p>Recipe search with Spoonacular API, useEffect, and detail pages.</p>
+            <div class="tags"><span class="tag">React</span><span class="tag">React Router</span><span class="tag">API</span></div>
+        </a>
+    </div>
+</body>
+</html>

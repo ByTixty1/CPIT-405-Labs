@@ -20,7 +20,7 @@ function Home() {
         type="text"
         placeholder="https://example.com/very/long/url"
         value={longUrl}
-        onChange={(e) => setLongUrl(e.target.value)}
+        onChange={(e) => { setLongUrl(e.target.value); setResult(""); }}
       />
 
       <label>Enter short code:</label>
@@ -28,7 +28,7 @@ function Home() {
         type="text"
         placeholder="e.g. react101"
         value={shortCode}
-        onChange={(e) => setShortCode(e.target.value)}
+        onChange={(e) => { setShortCode(e.target.value); setResult(""); }}
       />
 
       <div className="btn-row">
