@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 9 – Recipe Search</title>
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react-router-dom@5.3.0/umd/react-router-dom.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Navbar ── */
+        .navbar {
+            background: #2d2d2d;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 13px 16px;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+        .navbar a:hover { background: rgba(255,255,255,0.1); }
+
+        /* ── Main ── */
+        .main {
+            flex: 1;
+            padding: 24px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ── Search row ── */
+        .search-row {
+            display: flex;
+            margin-bottom: 24px;
+        }
+        .search-input {
+            flex: 1;
+            padding: 10px 14px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+            max-width: 600px;
+        }
+        .search-input:focus { border-color: #009688; }
+        .search-btn {
+            background: #009688;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+        }
+        .search-btn:hover { background: #00796b; }
+
+        /* ── Recipe grid ── */
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 16px;
+        }
+
+        .recipe-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .recipe-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+        .recipe-card .card-title {
+            padding: 10px 12px;
+        }
+        .recipe-card .card-title a {
+            color: #1a0dab;
+            text-decoration: underline;
+            font-size: 0.92rem;
+            cursor: pointer;
+        }
+        .recipe-card .card-title a:hover { color: #1558b0; }
+
+        /* ── Detail page ── */
+        .detail {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 8px 0 24px;
+        }
+        .detail h1 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+        }
+        .detail img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .detail h2 {
+            font-size: 1.15rem;
+            margin: 18px 0 8px;
+        }
+        .detail ul {
+            list-style: disc;
+            padding-left: 20px;
+            line-height: 1.8;
+            font-size: 0.93rem;
+        }
+        .detail .instructions {
+            font-size: 0.93rem;
+            line-height: 1.8;
+        }
+        .detail .instructions ol {
+            padding-left: 20px;
+        }
+        .btn-back {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 16px;
+            background: #2d2d2d;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        .btn-back:hover { background: #555; }
+
+        /* ── About ── */
+        .about-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 8px 0;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        .about-content h1 { margin-bottom: 14px; }
+
+        /* ── Footer ── */
+        footer {
+            background: #2d2d2d;
+            color: #ccc;
+            text-align: center;
+            padding: 14px;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        .status-msg { color: #555; font-size: 0.9rem; margin-bottom: 16px; }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { HashRouter, Route, Switch, Link, useHistory } = ReactRouterDOM;
+
+        const API_KEY = "YOUR_SPOONACULAR_API_KEY";
+        const BASE = "https://api.spoonacular.com";
+
+        function Navbar() {
+            return (
+                <nav className="navbar">
+                    <Link to="/">Home</Link>
+                    <Link to="/about">About</Link>
+                </nav>
+            );
+        }
+
+        function Home() {
+            const [query, setQuery] = React.useState("");
+            const [recipes, setRecipes] = React.useState([]);
+            const [status, setStatus] = React.useState("");
+            const history = useHistory();
+
+            // useEffect — fetch default recipes when component mounts
+            React.useEffect(() => {
+                setStatus("Loading recipes...");
+                fetch(`${BASE}/recipes/complexSearch?query=chicken&number=10&apiKey=${API_KEY}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        setRecipes(data.results || []);
+                        setStatus("");
+                    })
+                    .catch(() => setStatus("Could not load recipes. Check your API key."));
+            }, []);
+
+            // Search — user-triggered event
+            function handleSearch() {
+                if (!query.trim()) return;
+                setStatus("Searching...");
+                fetch(`${BASE}/recipes/complexSearch?query=${encodeURIComponent(query)}&number=10&apiKey=${API_KEY}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        setRecipes(data.results || []);
+                        setStatus("");
+                    })
+                    .catch(() => setStatus("Search failed. Check your API key."));
+            }
+
+            return (
+                <>
+                    <div className="main">
+                        <div className="search-row">
+                            <input
+                                className="search-input"
+                                type="text"
+                                placeholder="Search recipes..."
+                                value={query}
+                                onChange={e => setQuery(e.target.value)}
+                                onKeyDown={e => e.key === "Enter" && handleSearch()}
+                            />
+                            <button className="search-btn" onClick={handleSearch}>SEARCH</button>
+                        </div>
+                        {status && <p className="status-msg">{status}</p>}
+                        <div className="recipe-grid">
+                            {recipes.map(recipe => (
+                                <div key={recipe.id} className="recipe-card">
+                                    <img src={recipe.image} alt={recipe.title} />
+                                    <div className="card-title">
+                                        <a onClick={() => history.push(`/recipe/${recipe.id}`)}>
+                                            {recipe.title}
+                                        </a>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <footer>CPIT-405 | React Examples</footer>
+                </>
+            );
+        }
+
+        function RecipeDetail({ match }) {
+            const id = match.params.id;
+            const [recipe, setRecipe] = React.useState(null);
+            const [status, setStatus] = React.useState("Loading...");
+            const history = useHistory();
+
+            React.useEffect(() => {
+                fetch(`${BASE}/recipes/${id}/information?apiKey=${API_KEY}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        setRecipe(data);
+                        setStatus("");
+                    })
+                    .catch(() => setStatus("Failed to load recipe."));
+            }, [id]);
+
+            return (
+                <>
+                    <div className="main">
+                        <div className="detail">
+                            <button className="btn-back" onClick={() => history.push("/")}>← Back</button>
+                            {status && <p className="status-msg">{status}</p>}
+                            {recipe && (
+                                <>
+                                    <h1>{recipe.title}</h1>
+                                    {recipe.image && (
+                                        <img src={recipe.image} alt={recipe.title} />
+                                    )}
+                                    <h2>Ingredients</h2>
+                                    <ul>
+                                        {(recipe.extendedIngredients || []).map((ing, i) => (
+                                            <li key={i}>{ing.original}</li>
+                                        ))}
+                                    </ul>
+                                    <h2>Instructions</h2>
+                                    <div
+                                        className="instructions"
+                                        dangerouslySetInnerHTML={{
+                                            __html: recipe.instructions || "<p>No instructions available.</p>"
+                                        }}
+                                    />
+                                </>
+                            )}
+                        </div>
+                    </div>
+                    <footer>CPIT-405 | React Examples</footer>
+                </>
+            );
+        }
+
+        function About() {
+            return (
+                <>
+                    <div className="main">
+                        <div className="about-content">
+                            <h1>About</h1>
+                            <p>
+                                This recipe search app is built with React.js for CPIT-405 Lab 9.
+                                It demonstrates state management with <strong>useState</strong>,
+                                component lifecycle with <strong>useEffect</strong>, client-side routing
+                                with <strong>React Router</strong>, and async data fetching from the
+                                Spoonacular API.
+                            </p>
+                        </div>
+                    </div>
+                    <footer>CPIT-405 | React Examples</footer>
+                </>
+            );
+        }
+
+        function App() {
+            return (
+                <HashRouter>
+                    <Navbar />
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/recipe/:id" component={RecipeDetail} />
+                        <Route path="/about" component={About} />
+                    </Switch>
+                </HashRouter>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+</body>
+
+</html>

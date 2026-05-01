@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 7 - Async JavaScript</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="header-row">
+        <h1>Lab 7 – Asynchronous JavaScript</h1>
+        <a href="../Lab-8/Lab-8.html" class="nav-btn">Lab 8 →</a>
+    </div>
+
+    <div class="search-area">
+        <input id="query" type="text" placeholder="Search images..." />
+        <div class="method-btns">
+            <button id="btn-xhr" class="method-btn">XHR</button>
+            <button id="btn-promise" class="method-btn">Fetch + Promise</button>
+            <button id="btn-async" class="method-btn">Fetch + Async/Await</button>
+        </div>
+    </div>
+
+    <p id="status-msg"></p>
+
+    <div id="results" class="results-grid"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

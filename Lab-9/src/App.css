@@ -1,0 +1,207 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Navbar ── */
+.navbar {
+  background: #2d2d2d;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  padding: 13px 16px;
+  display: inline-block;
+  font-size: 0.95rem;
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Main ── */
+.main {
+  flex: 1;
+  padding: 24px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Search row ── */
+.search-row {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+  max-width: 600px;
+}
+
+.search-input:focus {
+  border-color: #009688;
+}
+
+.search-btn {
+  background: #009688;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+
+.search-btn:hover {
+  background: #00796b;
+}
+
+/* ── Recipe grid ── */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+.recipe-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.recipe-card .card-title {
+  padding: 10px 12px;
+}
+
+.recipe-card .card-title a {
+  color: #1a0dab;
+  text-decoration: underline;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.recipe-card .card-title a:hover {
+  color: #1558b0;
+}
+
+/* ── Detail page ── */
+.detail {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 8px 0 24px;
+}
+
+.detail h1 {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+.detail img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.detail h2 {
+  font-size: 1.15rem;
+  margin: 18px 0 8px;
+}
+
+.detail ul {
+  list-style: disc;
+  padding-left: 20px;
+  line-height: 1.8;
+  font-size: 0.93rem;
+}
+
+.detail .instructions {
+  font-size: 0.93rem;
+  line-height: 1.8;
+}
+
+.detail .instructions ol {
+  padding-left: 20px;
+}
+
+.btn-back {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 8px 16px;
+  background: #2d2d2d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-back:hover {
+  background: #555;
+}
+
+/* ── About ── */
+.about-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 8px 0;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.about-content h1 {
+  margin-bottom: 14px;
+}
+
+/* ── Footer ── */
+footer {
+  background: #2d2d2d;
+  color: #ccc;
+  text-align: center;
+  padding: 14px;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.status-msg {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
