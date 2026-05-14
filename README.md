@@ -20,6 +20,7 @@ Web development labs for the **CPIT-405** course at King Abdulaziz University.
 | [Lab 7](Lab-7/) | Async JavaScript — Unsplash Image Search | HTML, CSS, JS, API |
 | [Lab 8](Lab-8/) | React — Link Shrinker (URL Shortener) | React, React Router |
 | [Lab 9](Lab-9/) | React — Recipe Search (Spoonacular API) | React, React Router, API |
+| [Lab 10](Lab-10/index.php) | PHP & MariaDB — Full MVC Products App | PHP, MariaDB, MVC |
 
 ---
 
@@ -77,6 +78,15 @@ A recipe search app built with React featuring:
 - React Router for navigation
 
 Requires a free [Spoonacular API key](https://spoonacular.com/food-api) — replace `YOUR_SPOONACULAR_API_KEY` in `Lab-9/Lab-9.html`.
+
+### Lab 10 — PHP & MariaDB
+A full Model-View-Controller (MVC) PHP application demonstrating:
+- A custom Power function
+- Object-Oriented Programming (OOP) with class diagrams
+- Database connection to a MariaDB/MySQL database
+- Products list view and CRUD operations using PHP models and controllers
+
+Requires a local PHP server (like XAMPP, MAMP, or Laravel Valet) and an active database connection. Open `Lab-10/index.php` through your local server to view.
 
 ---
 
