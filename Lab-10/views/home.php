@@ -1,5 +1,5 @@
 <?php
-// Student: Ali Saleh Alghamdi | ID: [YOUR_STUDENT_ID]
+// Student: Ali Saleh Alghamdi | ID: 2138215
 // Products listing view — $products is injected by index.php
 ?>
 

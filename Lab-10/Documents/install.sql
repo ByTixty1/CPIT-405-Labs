@@ -1,5 +1,5 @@
 -- CPIT-405 Lab 10 — Database Installation Script
--- Student: Ali Saleh Alghamdi | ID: [YOUR_STUDENT_ID]
+-- Student: Ali Saleh Alghamdi | ID: 2138215
 -- Run this script once in phpMyAdmin or MySQL CLI before starting the app.
 
 CREATE DATABASE IF NOT EXISTS cpit405_lab10
