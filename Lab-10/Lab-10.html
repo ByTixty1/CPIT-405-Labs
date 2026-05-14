@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 10 — PHP & MariaDB (Static Preview)</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .tabs {
+            display: flex;
+            background: #fff;
+            border-bottom: 2px solid #2d4a6b;
+            margin-bottom: 20px;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+        }
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #555;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .tab:hover { background: #f8f9fa; }
+        .tab.active {
+            color: #2d4a6b;
+            border-bottom-color: #2d4a6b;
+            background: #f0f4ff;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .static-note {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html">← Labs Home</a>
+        <span class="sep">|</span>
+        <a href="index.php" style="background: rgba(255,255,255,0.1); border-radius: 4px;">Run PHP Version (Local Only)</a>
+    </nav>
+
+    <div class="main">
+        <div class="static-note">
+            <span>⚠️</span>
+            <span>This is a <strong>Static Preview</strong> for GitHub Pages. It simulates the PHP & MariaDB logic using JavaScript and LocalStorage.</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('task1')">Task 1 (Power)</div>
+            <div class="tab" onclick="showTab('task2')">Task 2 (OOP)</div>
+            <div class="tab" onclick="showTab('task3')">Task 3 (DB)</div>
+            <div class="tab" onclick="showTab('mvc')">MVC Products</div>
+        </div>
+
+        <!-- Task 1 -->
+        <div id="task1" class="tab-content active">
+            <div class="card">
+                <h1>Task 1 — Power Function</h1>
+                <p class="desc">Calculates <code>base ^ exponent</code> using both iterative and recursive JS functions.</p>
+                
+                <div class="task-form">
+                    <label>Base:
+                        <input type="number" id="baseInput" value="2" step="any">
+                    </label>
+                    <label>Exponent:
+                        <input type="number" id="expInput" value="8">
+                    </label>
+                    <button class="btn" onclick="calcPower()">Calculate</button>
+                </div>
+
+                <div id="powerResult" class="result-box hidden">
+                    <p><strong id="powerHeader"></strong></p>
+                    <table class="result-table">
+                        <tr><th>Method</th><th>Result</th></tr>
+                        <tr><td>Iterative (JS)</td><td id="resIter"></td></tr>
+                        <tr><td>Recursive (JS)</td><td id="resRecur"></td></tr>
+                    </table>
+                </div>
+
+                <details class="code-block">
+                    <summary>View source code (PHP translation to JS)</summary>
+                    <pre><code>// Iterative approach
+function powerIterative(base, exp) {
+    let result = 1;
+    for (let i = 0; i < Math.abs(exp); i++) result *= base;
+    return exp < 0 ? 1 / result : result;
+}
+
+// Recursive approach
+function powerRecursive(base, exp) {
+    if (exp === 0) return 1;
+    if (exp < 0) return 1 / powerRecursive(base, -exp);
+    return base * powerRecursive(base, exp - 1);
+}</code></pre>
+                </details>
+            </div>
+        </div>
+
+        <!-- Task 2 -->
+        <div id="task2" class="tab-content">
+            <div class="card">
+                <h1>Task 2 — UML Diagram & OOP</h1>
+                <p class="desc">Simulating the Person → Professor inheritance in JavaScript.</p>
+                
+                <div class="uml-grid">
+                    <div class="uml-box">
+                        <div class="uml-title">Person</div>
+                        <div class="uml-section">
+                            <div class="uml-attr">− name : String</div>
+                        </div>
+                        <div class="uml-section">
+                            <div class="uml-method">+ speak() : void</div>
+                            <div class="uml-method">+ getName() : String</div>
+                        </div>
+                    </div>
+                    <div class="uml-arrow">◄</div>
+                    <div class="uml-box">
+                        <div class="uml-title">Professor</div>
+                        <div class="uml-section">
+                            <div class="uml-attr">− salary : Float</div>
+                        </div>
+                        <div class="uml-section">
+                            <div class="uml-method">+ Teach() : void</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Demo Output (JavaScript Classes)</h2>
+                <div class="result-box">
+                    <p><strong>Person instance:</strong></p>
+                    <p id="personSpeak"></p>
+                    <p>getName() → <strong id="personName"></strong></p>
+                    <hr/>
+                    <p><strong>Professor instance (inherits Person):</strong></p>
+                    <p id="profTeach"></p>
+                    <p>getName() → <strong id="profName"></strong></p>
+                    <p>salary → <strong id="profSalary"></strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task 3 -->
+        <div id="task3" class="tab-content">
+            <div class="card">
+                <h1>Task 3 — Database Simulation</h1>
+                <p class="desc">Mocking the <code>SHOW DATABASES;</code> output (PHP/MariaDB cannot run on static pages).</p>
+                
+                <div class="alert alert-success">Simulated connection to <strong>localhost</strong></div>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr><th>#</th><th>Database Name</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>information_schema</td></tr>
+                        <tr><td>2</td><td>mysql</td></tr>
+                        <tr><td>3</td><td>performance_schema</td></tr>
+                        <tr><td>4</td><td>phpmyadmin</td></tr>
+                        <tr><td>5</td><td>cpit405_lab10</td></tr>
+                        <tr><td>6</td><td>test</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- MVC App -->
+        <div id="mvc" class="tab-content">
+            <div class="card">
+                <div class="page-header">
+                    <h1>MVC Products Manager</h1>
+                    <button class="btn btn-secondary btn-sm" onclick="resetProducts()">Reset to Default</button>
+                </div>
+                <p class="desc">Simulating the MVC pattern and MariaDB CRUD using <code>localStorage</code>.</p>
+
+                <div class="inline-form">
+                    <label>Name:
+                        <input type="text" id="pName" placeholder="e.g. RTX 4090">
+                    </label>
+                    <label>Price:
+                        <input type="number" id="pPrice" placeholder="99.99">
+                    </label>
+                    <button class="btn" onclick="addProduct()">Add Product</button>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th style="text-align:right;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productBody">
+                        <!-- Dynamic content -->
+                    </tbody>
+                </table>
+                <div id="emptyMsg" class="empty-msg hidden">No products found. Add one above!</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        CPIT-405 | Ali Saleh Alghamdi | 2138215
+    </footer>
+
+    <script>
+        // ── Tab Logic ──
+        function showTab(tabId) {
+            document.querySelectorAll('.tab, .tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+            if (tabId === 'mvc') renderProducts();
+        }
+
+        // ── Task 1 Logic ──
+        function powerIterative(base, exp) {
+            let result = 1;
+            for (let i = 0; i < Math.abs(exp); i++) result *= base;
+            return exp < 0 ? 1 / result : result;
+        }
+        function powerRecursive(base, exp) {
+            if (exp === 0) return 1;
+            if (exp < 0) return 1 / powerRecursive(base, -exp);
+            return base * powerRecursive(base, exp - 1);
+        }
+        function calcPower() {
+            const base = parseFloat(document.getElementById('baseInput').value);
+            const exp = parseInt(document.getElementById('expInput').value);
+            const box = document.getElementById('powerResult');
+            
+            document.getElementById('powerHeader').innerHTML = `${base}<sup>${exp}</sup> = ${powerIterative(base, exp)}`;
+            document.getElementById('resIter').innerText = powerIterative(base, exp);
+            document.getElementById('resRecur').innerText = powerRecursive(base, exp);
+            box.classList.remove('hidden');
+        }
+
+        // ── Task 2 Logic ──
+        class Person {
+            constructor(name) { this.name = name; }
+            speak() { return `Hi, I am ${this.name}.`; }
+            getName() { return this.name; }
+        }
+        class Professor extends Person {
+            constructor(name, salary) {
+                super(name);
+                this.salary = salary;
+            }
+            Teach() { return `${this.name} is teaching a class.`; }
+        }
+
+        const p = new Person("Ali");
+        const prof = new Professor("Dr. Hassan", 12500.00);
+
+        document.getElementById('personSpeak').innerText = p.speak();
+        document.getElementById('personName').innerText = p.getName();
+        document.getElementById('profTeach').innerText = prof.Teach();
+        document.getElementById('profName').innerText = prof.getName();
+        document.getElementById('profSalary').innerText = prof.salary.toLocaleString() + " SAR";
+
+        // ── MVC Simulation ──
+        let products = JSON.parse(localStorage.getItem('lab10_products')) || [
+            { id: 1, name: "Gaming Laptop", price: 4500 },
+            { id: 2, name: "Mechanical Keyboard", price: 350 },
+            { id: 3, name: "Wireless Mouse", price: 120 }
+        ];
+
+        function renderProducts() {
+            const body = document.getElementById('productBody');
+            const empty = document.getElementById('emptyMsg');
+            body.innerHTML = '';
+            
+            if (products.length === 0) {
+                empty.classList.remove('hidden');
+            } else {
+                empty.classList.add('hidden');
+                products.forEach(p => {
+                    const row = `<tr>
+                        <td>${p.id}</td>
+                        <td>${p.name}</td>
+                        <td>${parseFloat(p.price).toFixed(2)} SAR</td>
+                        <td style="text-align:right;">
+                            <button class="btn btn-danger btn-sm" onclick="deleteProduct(${p.id})">Delete</button>
+                        </td>
+                    </tr>`;
+                    body.innerHTML += row;
+                });
+            }
+            localStorage.setItem('lab10_products', JSON.stringify(products));
+        }
+
+        function addProduct() {
+            const name = document.getElementById('pName').value.trim();
+            const price = document.getElementById('pPrice').value;
+            if (!name || !price) return alert("Please fill both fields.");
+
+            const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+            products.push({ id: newId, name, price: parseFloat(price) });
+            document.getElementById('pName').value = '';
+            document.getElementById('pPrice').value = '';
+            renderProducts();
+        }
+
+        function deleteProduct(id) {
+            products = products.filter(p => p.id !== id);
+            renderProducts();
+        }
+
+        function resetProducts() {
+            localStorage.removeItem('lab10_products');
+            location.reload();
+        }
+
+        // Init
+        window.onload = () => {
+            renderProducts();
+        };
+    </script>
+</body>
+</html>

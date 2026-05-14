@@ -20,7 +20,7 @@ Web development labs for the **CPIT-405** course at King Abdulaziz University.
 | [Lab 7](Lab-7/) | Async JavaScript — Unsplash Image Search | HTML, CSS, JS, API |
 | [Lab 8](Lab-8/) | React — Link Shrinker (URL Shortener) | React, React Router |
 | [Lab 9](Lab-9/) | React — Recipe Search (Spoonacular API) | React, React Router, API |
-| [Lab 10](Lab-10/index.php) | PHP & MariaDB — Full MVC Products App | PHP, MariaDB, MVC |
+| [Lab 10](Lab-10/Lab-10.html) | PHP & MariaDB — Full MVC Products App | PHP, MariaDB, MVC |
 
 ---
 
@@ -79,19 +79,19 @@ A recipe search app built with React featuring:
 
 Requires a free [Spoonacular API key](https://spoonacular.com/food-api) — replace `YOUR_SPOONACULAR_API_KEY` in `Lab-9/Lab-9.html`.
 
-### Lab 10 — PHP & MariaDB
-A full Model-View-Controller (MVC) PHP application demonstrating:
-- A custom Power function
+### Lab 10 — PHP & MariaDB (Static Preview)
+A full Model-View-Controller (MVC) PHP application simulation demonstrating:
+- A custom Power function (implemented in JS for preview)
 - Object-Oriented Programming (OOP) with class diagrams
-- Database connection to a MariaDB/MySQL database
-- Products list view and CRUD operations using PHP models and controllers
+- Database simulation using `localStorage`
+- Products list view and CRUD operations simulator
 
-Requires a local PHP server (like XAMPP, MAMP, or Laravel Valet) and an active database connection. Open `Lab-10/index.php` through your local server to view.
+**Note:** The original PHP version is available in `Lab-10/index.php` for local execution with XAMPP.
 
 ---
 
 ## How to Run
 
-Open any `Lab-X.html` file directly in a browser — no build step needed (Labs 7–9 use CDN-loaded React).
+Open any `Lab-X.html` file directly in a browser — no build step needed (Labs 7–10 use static previews or CDN-loaded scripts).
 
 **GitHub Pages:** [https://bytixty1.github.io/CPIT-405-Labs/](https://bytixty1.github.io/CPIT-405-Labs/)
